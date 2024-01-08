@@ -10,22 +10,24 @@
     align-items: center;
 } */
 
-.popup-inner{
-    position: fixed;
-    padding: 32px;
-    left: 350px;
-    width: 500px;
-    background-color: #52275d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
+.popup-inner {
+  position: fixed;
+  top: 550px;
+  left: 870px;
+  width: 500px;
+  height: 22vh;
+  transform: translate(-50%, -50%);
+  z-index: 999; /* Adjust the z-index based on your needs */
+  background: rgb(126, 70, 138);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgb(248, 241, 250);
 }
 
-.popup-inner .close-btn{
-    position: absolute;
-    top:16px;
-    right: 16px;
-    align-items: center;
-    border-radius: 15px;
+.popup-inner .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  align-items: center;
+  border-radius: 15px;
 }

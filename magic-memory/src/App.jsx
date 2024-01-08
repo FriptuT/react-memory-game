@@ -21,11 +21,10 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
 
-<<<<<<< HEAD:magic-memory/src/App.js
   const [disabled, setDisabled] = useState(false);
-=======
   const [isPopupVisible, setPopupVisible] = useState(false);
->>>>>>> 8691ba680e1e7757caf786cea03efe83b5e48fa7:magic-memory/src/App.jsx
+  const [gameStarted, setGameStarted] = useState(false);
+  const [isGameWon, setIsGameWon] = useState(false);
 
   // shuffle cards
   const shuffleCards = () => {
@@ -33,11 +32,12 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 
-
     setChoiceOne(null);
     setChoiceTwo(null);
     setCards(shuffleCards);
     setTurns(0);
+    setIsGameWon(false);
+    setGameStarted(true);
   };
 
   //handle a choice
@@ -55,6 +55,7 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       setDisabled(true);
+
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevState) => {
           return prevState.map((card) => {
@@ -67,31 +68,34 @@ function App() {
         });
         resetTurn();
       } else {
-        setTimeout(() => resetTurn(), 1000)
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [choiceOne, choiceTwo]);
 
   useEffect(() => {
-    shuffleCards()
-  }, [])
-
-
-
-  const togglePopup = () => {
-    setPopupVisible(!isPopupVisible);
-  };
-
-  useEffect(() => {
-    const allMatched = cards.every((card) => card.matched);
-  
-    if (allMatched) {
-      setTimeout(() => {
+    if (gameStarted) {
+      const allCardsMatched = cards.every((card) => card.matched);
+      if (allCardsMatched && cards.length > 0) {
+        setIsGameWon(true);
         setPopupVisible(true);
-      }, 0); // Delay set to 0 milliseconds
+        console.log(allCardsMatched);
+        console.log("gameWon:" + isGameWon);
+        console.log("isVisible:" + isPopupVisible);
+      }
     }
-  }, [cards]);
-  
+  }, [cards, gameStarted]);
+
+  // useEffect(() => {
+  //   setCards((prevState) => {
+  //     return prevState.every((card) => {
+  //       if (card.matched) {
+  //         setIsGameWon(true);
+  //         setPopupVisible(true);
+  //       }
+  //     });
+  //   });
+  // }, []);
 
   return (
     <div className="App">
@@ -100,24 +104,19 @@ function App() {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard 
-          key={card.id} 
-          card={card} 
-          handleChoice={handleChoice} 
-          flipped={card === choiceOne || card === choiceTwo || card.matched}
-          disabled={disabled}
+          <SingleCard
+            key={card.id}
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
           />
         ))}
       </div>
-<<<<<<< HEAD:magic-memory/src/App.js
-      <p>Turns: {turns}</p>
-=======
-
       <div className="popup">
-      {isPopupVisible && <PopUp onClose={togglePopup} />}
+        {isPopupVisible ? <PopUp onClose={() => setPopupVisible(false)} /> : ""}
       </div>
-      
->>>>>>> 8691ba680e1e7757caf786cea03efe83b5e48fa7:magic-memory/src/App.jsx
+      <p>Turns: {turns}</p>
     </div>
   );
 }
