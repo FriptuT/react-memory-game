@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./SingleCard.css";
 
 export default function SingleCard({ card, handleChoice, flipped, disabled }) {
@@ -6,6 +7,7 @@ export default function SingleCard({ card, handleChoice, flipped, disabled }) {
       handleChoice(card);
     }
   };
+
 
   return (
     <div className="card">

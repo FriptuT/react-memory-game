@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard";
+import PopUp from "./components/PopUp";
 
 const cardImages = [
-  { src: "/img/helmet-1.png", matched: false },
-  { src: "/img/potion-1.png", matched: false },
-  { src: "/img/ring-1.png", matched: false },
-  { src: "/img/scroll-1.png", matched: false },
-  { src: "/img/shield-1.png", matched: false },
-  { src: "/img/sword-1.png", matched: false },
+  { src: "/img/christmas.jpg", matched: false },
+  { src: "/img/park-day.jpg", matched: false },
+  { src: "/img/eu.jpg", matched: false },
+  { src: "/img/park-night-walk.jpg", matched: false },
+  { src: "/img/spa.jpg", matched: false },
+  { src: "/img/sky.jpg", matched: false },
 ];
 
 function App() {
@@ -20,7 +21,11 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
 
+<<<<<<< HEAD:magic-memory/src/App.js
   const [disabled, setDisabled] = useState(false);
+=======
+  const [isPopupVisible, setPopupVisible] = useState(false);
+>>>>>>> 8691ba680e1e7757caf786cea03efe83b5e48fa7:magic-memory/src/App.jsx
 
   // shuffle cards
   const shuffleCards = () => {
@@ -73,9 +78,24 @@ function App() {
 
 
 
+  const togglePopup = () => {
+    setPopupVisible(!isPopupVisible);
+  };
+
+  useEffect(() => {
+    const allMatched = cards.every((card) => card.matched);
+  
+    if (allMatched) {
+      setTimeout(() => {
+        setPopupVisible(true);
+      }, 0); // Delay set to 0 milliseconds
+    }
+  }, [cards]);
+  
+
   return (
     <div className="App">
-      <h1>Magic Match</h1>
+      <h1>Teodor's Magic</h1>
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
@@ -89,7 +109,15 @@ function App() {
           />
         ))}
       </div>
+<<<<<<< HEAD:magic-memory/src/App.js
       <p>Turns: {turns}</p>
+=======
+
+      <div className="popup">
+      {isPopupVisible && <PopUp onClose={togglePopup} />}
+      </div>
+      
+>>>>>>> 8691ba680e1e7757caf786cea03efe83b5e48fa7:magic-memory/src/App.jsx
     </div>
   );
 }

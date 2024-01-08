@@ -1,0 +1,31 @@
+/* .popup{
+    position: fixed;
+    top:180px;
+    left:350px;
+    width: 600px;
+    height: 70vh;
+    background-color: #814590;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.popup-inner{
+    position: fixed;
+    padding: 32px;
+    left: 350px;
+    width: 500px;
+    background-color: #52275d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.popup-inner .close-btn{
+    position: absolute;
+    top:16px;
+    right: 16px;
+    align-items: center;
+    border-radius: 15px;
+}
