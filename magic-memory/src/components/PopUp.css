@@ -12,16 +12,16 @@
 
 .popup-inner {
   position: fixed;
-  top: 550px;
-  left: 870px;
+  top: 350px;
+  left: 638px;
   width: 500px;
-  height: 22vh;
+  height: 30vh;
   transform: translate(-50%, -50%);
   z-index: 999; /* Adjust the z-index based on your needs */
   background: rgb(126, 70, 138);
   padding: 20px;
   text-align: center;
-  box-shadow: 0 0 10px rgb(248, 241, 250);
+  box-shadow: 0 0 50px rgb(248, 241, 250);
 }
 
 .popup-inner .close-btn {
